@@ -40,6 +40,7 @@ export const Todo = memo(() => {
 
   const addTaskHandler = useCallback(
     (taskText) => {
+      if (taskText === "") return;
       setTasks(addTask(tasks, taskText, v4()));
     },
     [tasks]
