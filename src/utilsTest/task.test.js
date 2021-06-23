@@ -4,6 +4,8 @@ import {
   deleteTask,
   clearCompleted,
   addTask,
+  editTask,
+  startEditTask,
 } from "utils/task";
 
 describe("Тестирование завершения работы над задачей", () => {
@@ -300,6 +302,126 @@ describe("Создаем новый таск и добавляем в масси
         text: "Editing task",
         completed: false,
         isEditing: false,
+        createdAt: new Date(Date.now()),
+      },
+      {
+        id: 3,
+        text: "Active task",
+        completed: false,
+        isEditing: false,
+        createdAt: new Date(Date.now()),
+      },
+    ]);
+  });
+});
+
+describe("Редактируем текст таска по айдишнику и новому тексту", () => {
+  let mocks = [];
+  jest
+    .spyOn(global, "Date")
+    .mockImplementation(() => new Date("2020-11-26T00:00:00.000Z"));
+  Date.now = () => 1606348800;
+  beforeAll(() => {
+    mocks = [
+      {
+        id: 1,
+        text: "Completed task",
+        completed: true,
+        isEditing: false,
+        createdAt: new Date(Date.now()),
+      },
+      {
+        id: 2,
+        text: "Editing task",
+        completed: false,
+        isEditing: false,
+        createdAt: new Date(Date.now()),
+      },
+      {
+        id: 3,
+        text: "Active task",
+        completed: false,
+        isEditing: false,
+        createdAt: new Date(Date.now()),
+      },
+    ];
+  });
+
+  it("Меняем текст таска с айдишником 2 на Hello", () => {
+    const expectFn = editTask(mocks, 2, "Hello");
+    expect(expectFn).toEqual([
+      {
+        id: 1,
+        text: "Completed task",
+        completed: true,
+        isEditing: false,
+        createdAt: new Date(Date.now()),
+      },
+      {
+        id: 2,
+        text: "Hello",
+        completed: false,
+        isEditing: false,
+        createdAt: new Date(Date.now()),
+      },
+      {
+        id: 3,
+        text: "Active task",
+        completed: false,
+        isEditing: false,
+        createdAt: new Date(Date.now()),
+      },
+    ]);
+  });
+});
+
+describe("Меняем поле объекта в массиве isEditing на true", () => {
+  let mocks = [];
+  jest
+    .spyOn(global, "Date")
+    .mockImplementation(() => new Date("2020-11-26T00:00:00.000Z"));
+  Date.now = () => 1606348800;
+  beforeAll(() => {
+    mocks = [
+      {
+        id: 1,
+        text: "Completed task",
+        completed: false,
+        isEditing: false,
+        createdAt: new Date(Date.now()),
+      },
+      {
+        id: 2,
+        text: "Editing task",
+        completed: false,
+        isEditing: false,
+        createdAt: new Date(Date.now()),
+      },
+      {
+        id: 3,
+        text: "Active task",
+        completed: false,
+        isEditing: false,
+        createdAt: new Date(Date.now()),
+      },
+    ];
+  });
+
+  it("меняем поле isEditing объекта с полем id: 2 на true", () => {
+    const expectFn = startEditTask(mocks, 2);
+    expect(expectFn).toEqual([
+      {
+        id: 1,
+        text: "Completed task",
+        completed: false,
+        isEditing: false,
+        createdAt: new Date(Date.now()),
+      },
+      {
+        id: 2,
+        text: "Editing task",
+        completed: false,
+        isEditing: true,
         createdAt: new Date(Date.now()),
       },
       {

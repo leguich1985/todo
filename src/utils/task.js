@@ -24,7 +24,7 @@ export const deleteTask = (tasks, id) => {
   return tasks.filter((todo) => todo.id !== id);
 };
 
-export const editTodo = (tasks, id, newTodoText) => {
+export const editTask = (tasks, id, newTodoText) => {
   const idx = tasks.findIndex((todo) => todo.id === id);
   const newTodos = [].concat(tasks);
   newTodos[idx] = Object.assign({}, newTodos[idx], {
@@ -34,7 +34,7 @@ export const editTodo = (tasks, id, newTodoText) => {
   return newTodos;
 };
 
-export const startEdit = (tasks, id) => {
+export const startEditTask = (tasks, id) => {
   const newTodos = [].concat(tasks);
   const idx = tasks.findIndex((todo) => todo.id === id);
   newTodos[idx] = Object.assign({}, newTodos[idx], { isEditing: true });

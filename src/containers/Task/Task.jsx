@@ -1,5 +1,5 @@
 import React, { useState, memo, useCallback } from "react";
-import { editTodo, startEdit } from "utils/task";
+import { editTask, startEditTask } from "utils/task";
 import { Task as Component } from "components/Task";
 
 export const Task = memo(
@@ -20,13 +20,13 @@ export const Task = memo(
       (event) => {
         event.preventDefault();
         event.target.focus();
-        setTasks(editTodo(tasks, id, editTodoText));
+        setTasks(editTask(tasks, id, editTodoText));
       },
       [editTodoText, id, setTasks, tasks]
     );
 
     const onStartEdit = useCallback(() => {
-      setTasks(startEdit(tasks, id));
+      setTasks(startEditTask(tasks, id));
     }, [id, tasks, setTasks]);
 
     return (
