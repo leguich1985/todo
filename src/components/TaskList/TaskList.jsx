@@ -3,7 +3,7 @@ import "./index.css";
 import { Task } from "containers/Task";
 
 export const TaskList = memo(
-  ({ tasks, complitingChange, onDeleteTodo, setTodos }) => {
+  ({ tasks, complitingChange, onDeleteTodo, setTasks }) => {
     return (
       <section className="main">
         <ul className="todo-list">
@@ -11,7 +11,7 @@ export const TaskList = memo(
             <Task
               {...todo}
               tasks={tasks}
-              setTodos={setTodos}
+              setTasks={setTasks}
               key={todo.id}
               complitingChange={complitingChange}
               onDeleteTodo={onDeleteTodo}

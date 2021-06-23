@@ -12,7 +12,7 @@ export const Task = memo(
     complitingChange,
     onDeleteTodo,
     tasks,
-    setTodos,
+    setTasks,
   }) => {
     const [editTodoText, setEditTodoText] = useState(text);
 
@@ -20,14 +20,14 @@ export const Task = memo(
       (event) => {
         event.preventDefault();
         event.target.focus();
-        setTodos(editTodo(tasks, id, editTodoText));
+        setTasks(editTodo(tasks, id, editTodoText));
       },
-      [editTodoText, id, setTodos, tasks]
+      [editTodoText, id, setTasks, tasks]
     );
 
     const onStartEdit = useCallback(() => {
-      setTodos(startEdit(tasks, id));
-    }, [id, tasks, setTodos]);
+      setTasks(startEdit(tasks, id));
+    }, [id, tasks, setTasks]);
 
     return (
       <Component

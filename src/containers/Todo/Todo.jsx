@@ -13,7 +13,7 @@ import {
 import { v4 } from "uuid";
 
 export const Todo = memo(() => {
-  const [tasks, setTodos] = useState(mockTodos);
+  const [tasks, setTasks] = useState(mockTodos);
   const [currentFilter, setCurrentFilter] = useState("All");
 
   const activeTasksCount = useMemo(() => {
@@ -22,25 +22,25 @@ export const Todo = memo(() => {
 
   const complitingChange = useCallback(
     (id) => {
-      setTodos(completedTask(id, tasks));
+      setTasks(completedTask(id, tasks));
     },
     [tasks]
   );
 
   const onDeleteTodo = useCallback(
     (id) => {
-      setTodos(deleteTodo(tasks, id));
+      setTasks(deleteTodo(tasks, id));
     },
     [tasks]
   );
 
   const onClearCompleted = useCallback(() => {
-    setTodos(clearCompleted(tasks));
+    setTasks(clearCompleted(tasks));
   }, [tasks]);
 
   const onAddTodo = useCallback(
     (textTodo) => {
-      setTodos(addTodo(tasks, textTodo, v4()));
+      setTasks(addTodo(tasks, textTodo, v4()));
     },
     [tasks]
   );
@@ -58,7 +58,7 @@ export const Todo = memo(() => {
     <section className="todoapp">
       <NewTaskForm onAddTodo={onAddTodo} />
       <TaskList
-        setTodos={setTodos}
+        setTasks={setTasks}
         tasks={filteredTodos}
         complitingChange={complitingChange}
         onDeleteTodo={onDeleteTodo}
