@@ -6,9 +6,9 @@ import { mockTasks } from "__mocks__/tasks";
 import {
   completedTask,
   clearCompleted,
-  addTodo,
+  addTask,
   deleteTask,
-  filterTodos,
+  filterTasks,
 } from "utils/task";
 import { v4 } from "uuid";
 
@@ -17,56 +17,56 @@ export const Todo = memo(() => {
   const [currentFilter, setCurrentFilter] = useState("All");
 
   const activeTasksCount = useMemo(() => {
-    return filterTodos(tasks, "Active").length;
+    return filterTasks(tasks, "Active").length;
   }, [tasks]);
 
-  const complitingChange = useCallback(
+  const completingChangeHandler = useCallback(
     (id) => {
       setTasks(completedTask(id, tasks));
     },
     [tasks]
   );
 
-  const onDeleteTodo = useCallback(
+  const deleteTaskHandler = useCallback(
     (id) => {
       setTasks(deleteTask(tasks, id));
     },
     [tasks]
   );
 
-  const onClearCompleted = useCallback(() => {
+  const clearCompletedHandler = useCallback(() => {
     setTasks(clearCompleted(tasks));
   }, [tasks]);
 
-  const onAddTodo = useCallback(
-    (textTodo) => {
-      setTasks(addTodo(tasks, textTodo, v4()));
+  const addTaskHandler = useCallback(
+    (taskText) => {
+      setTasks(addTask(tasks, taskText, v4()));
     },
     [tasks]
   );
 
-  const onFilterChange = useCallback((name) => {
+  const filterChangeHandler = useCallback((name) => {
     setCurrentFilter(name);
   }, []);
 
-  const filteredTodos = useMemo(
-    () => filterTodos(tasks, currentFilter),
+  const filteredTasks = useMemo(
+    () => filterTasks(tasks, currentFilter),
     [tasks, currentFilter]
   );
 
   return (
     <section className="todoapp">
-      <NewTaskForm onAddTodo={onAddTodo} />
+      <NewTaskForm addTaskHandler={addTaskHandler} />
       <TaskList
         setTasks={setTasks}
-        tasks={filteredTodos}
-        complitingChange={complitingChange}
-        onDeleteTodo={onDeleteTodo}
+        tasks={filteredTasks}
+        completingChangeHandler={completingChangeHandler}
+        deleteTaskHandler={deleteTaskHandler}
       />
       <Footer
         activeTasksCount={activeTasksCount}
-        onClearCompleted={onClearCompleted}
-        onFilterChange={onFilterChange}
+        clearCompletedHandler={clearCompletedHandler}
+        filterChangeHandler={filterChangeHandler}
         currentFilter={currentFilter}
       />
     </section>

@@ -4,15 +4,20 @@ import { TasksFilter } from "components/TasksFilter";
 import "./index.css";
 
 export const Footer = memo(
-  ({ activeTasksCount, onClearCompleted, onFilterChange, currentFilter }) => {
+  ({
+    activeTasksCount,
+    clearCompletedHandler,
+    filterChangeHandler,
+    currentFilter,
+  }) => {
     return (
       <footer className="footer">
         <span className="todo-count">{activeTasksCount} items left</span>
         <TasksFilter
           currentFilter={currentFilter}
-          onFilterChange={onFilterChange}
+          filterChangeHandler={filterChangeHandler}
         />
-        <Button className="clear-completed" onClick={onClearCompleted}>
+        <Button className="clear-completed" onClick={clearCompletedHandler}>
           Clear completed
         </Button>
       </footer>

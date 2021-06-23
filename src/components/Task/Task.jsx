@@ -11,11 +11,11 @@ export const Task = memo(
     setEditTodoText,
     isEditing,
     completed,
-    complitingChange,
+    completingChangeHandler,
     id,
     text,
     createdAt,
-    onDeleteTodo,
+    deleteTaskHandler,
   }) => {
     return (
       <li className={classNames({ editing: isEditing, completed: completed })}>
@@ -24,7 +24,7 @@ export const Task = memo(
             className="toggle"
             type="checkbox"
             checked={completed}
-            onChange={() => complitingChange(id)}
+            onChange={() => completingChangeHandler(id)}
           />
           <label>
             {!isEditing && <span className="description">{text}</span>}
@@ -36,7 +36,7 @@ export const Task = memo(
           <button className="icon icon-edit" onClick={onStartEdit}></button>
           <button
             className="icon icon-destroy"
-            onClick={() => onDeleteTodo(id)}
+            onClick={() => deleteTaskHandler(id)}
           ></button>
         </div>
         {isEditing && (

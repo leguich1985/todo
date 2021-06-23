@@ -1,4 +1,4 @@
-import { completedTask, filterTodos, deleteTask } from "utils/task";
+import { completedTask, filterTasks, deleteTask } from "utils/task";
 
 describe("Тестирование завершения работы над задачей", () => {
   let mocks = [];
@@ -78,7 +78,7 @@ describe("Тестирование фильтрации", () => {
   });
 
   it("Фильтруем по ключу All", () => {
-    const expectFn = filterTodos(mocks, "All");
+    const expectFn = filterTasks(mocks, "All");
     expect(expectFn).toEqual([
       {
         id: 1,
@@ -96,7 +96,7 @@ describe("Тестирование фильтрации", () => {
   });
 
   it("Фильтруем по ключу BlaBla", () => {
-    const expectFn = filterTodos(mocks, "BlaBla");
+    const expectFn = filterTasks(mocks, "BlaBla");
     expect(expectFn).toEqual([
       {
         id: 1,
@@ -114,7 +114,7 @@ describe("Тестирование фильтрации", () => {
   });
 
   it("Фильтруем по ключу Completed", () => {
-    const expectFn = filterTodos(mocks, "Completed");
+    const expectFn = filterTasks(mocks, "Completed");
     expect(expectFn).toEqual([
       {
         id: 1,
@@ -124,7 +124,7 @@ describe("Тестирование фильтрации", () => {
   });
 
   it("Фильтруем по ключу Active", () => {
-    const expectFn = filterTodos(mocks, "Active");
+    const expectFn = filterTasks(mocks, "Active");
     expect(expectFn).toEqual([
       {
         id: 2,

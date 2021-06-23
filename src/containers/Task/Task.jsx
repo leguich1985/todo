@@ -9,8 +9,8 @@ export const Task = memo(
     completed,
     isEditing,
     createdAt,
-    complitingChange,
-    onDeleteTodo,
+    completingChangeHandler,
+    deleteTaskHandler,
     tasks,
     setTasks,
   }) => {
@@ -38,10 +38,10 @@ export const Task = memo(
         id={id}
         isEditing={isEditing}
         completed={completed}
-        complitingChange={complitingChange}
+        completingChangeHandler={completingChangeHandler}
         text={text}
         createdAt={createdAt}
-        onDeleteTodo={onDeleteTodo}
+        deleteTaskHandler={deleteTaskHandler}
       />
     );
   }

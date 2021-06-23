@@ -1,23 +1,23 @@
 import React, { useState, memo } from "react";
 import "./index.css";
 
-export const NewTaskForm = memo(({ onAddTodo }) => {
+export const NewTaskForm = memo(({ addTaskHandler }) => {
   const [todoText, setTodoText] = useState("");
 
   const updateTodoText = ({ target: { value } }) => {
     setTodoText(value);
   };
 
-  const addTodo = (event) => {
+  const addTask = (event) => {
     event.preventDefault();
-    onAddTodo(todoText);
+    addTaskHandler(todoText);
     setTodoText("");
   };
 
   return (
     <header>
       <h1>tasks</h1>
-      <form onSubmit={addTodo}>
+      <form onSubmit={addTask}>
         <input
           value={todoText}
           className="new-todo"

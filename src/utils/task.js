@@ -14,7 +14,7 @@ export const clearCompleted = (tasks) => {
   return activeTodos;
 };
 
-export const addTodo = (tasks, todoText, todoId) => {
+export const addTask = (tasks, todoText, todoId) => {
   const newTodo = generateNewTask(todoText, todoId);
   const newTodos = [].concat(newTodo).concat(tasks);
   return newTodos;
@@ -41,7 +41,7 @@ export const startEdit = (tasks, id) => {
   return newTodos;
 };
 
-export const filterTodos = (tasks, currentFilter) => {
+export const filterTasks = (tasks, currentFilter) => {
   const copy = [].concat(tasks);
 
   if (buttonFiltersActions[currentFilter]) {

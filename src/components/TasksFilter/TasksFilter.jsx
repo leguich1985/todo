@@ -4,7 +4,7 @@ import classNames from "classnames";
 import { isFilter } from "utils/filterclasses";
 import { FILTER_NAMES } from "constants/tasksFilter";
 
-export const TasksFilter = memo(({ currentFilter, onFilterChange }) => (
+export const TasksFilter = memo(({ currentFilter, filterChangeHandler }) => (
   <ul className="filters">
     {FILTER_NAMES.map((name) => (
       <li key={name}>
@@ -12,7 +12,7 @@ export const TasksFilter = memo(({ currentFilter, onFilterChange }) => (
           className={classNames({
             selected: isFilter(currentFilter, name),
           })}
-          onClick={() => onFilterChange(name)}
+          onClick={() => filterChangeHandler(name)}
         >
           {name}
         </Button>
