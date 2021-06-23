@@ -16,7 +16,7 @@ export const NewTaskForm = memo(({ onAddTodo }) => {
 
   return (
     <header>
-      <h1>todos</h1>
+      <h1>tasks</h1>
       <form onSubmit={addTodo}>
         <input
           value={todoText}

@@ -11,7 +11,7 @@ export const Task = memo(
     createdAt,
     complitingChange,
     onDeleteTodo,
-    todos,
+    tasks,
     setTodos,
   }) => {
     const [editTodoText, setEditTodoText] = useState(text);
@@ -20,14 +20,14 @@ export const Task = memo(
       (event) => {
         event.preventDefault();
         event.target.focus();
-        setTodos(editTodo(todos, id, editTodoText));
+        setTodos(editTodo(tasks, id, editTodoText));
       },
-      [editTodoText, id, setTodos, todos]
+      [editTodoText, id, setTodos, tasks]
     );
 
     const onStartEdit = useCallback(() => {
-      setTodos(startEdit(todos, id));
-    }, [id, todos, setTodos]);
+      setTodos(startEdit(tasks, id));
+    }, [id, tasks, setTodos]);
 
     return (
       <Component

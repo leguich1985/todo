@@ -1,32 +1,32 @@
 import { buttonFiltersActions } from "actions/filterButtonsActions";
 import { generateNewTask } from "./generateNewTask";
 
-export const completedTask = (id, todos) => {
-  const idx = todos.findIndex((todo) => todo.id === id);
-  const newTodos = [].concat(todos);
+export const completedTask = (id, tasks) => {
+  const idx = tasks.findIndex((todo) => todo.id === id);
+  const newTodos = [].concat(tasks);
   newTodos[idx].completed = !newTodos[idx].completed;
   return newTodos;
 };
 
-export const clearCompleted = (todos) => {
-  const newTodos = [].concat(todos);
+export const clearCompleted = (tasks) => {
+  const newTodos = [].concat(tasks);
   const activeTodos = newTodos.filter((todo) => !todo.completed);
   return activeTodos;
 };
 
-export const addTodo = (todos, todoText, todoId) => {
+export const addTodo = (tasks, todoText, todoId) => {
   const newTodo = generateNewTask(todoText, todoId);
-  const newTodos = [].concat(newTodo).concat(todos);
+  const newTodos = [].concat(newTodo).concat(tasks);
   return newTodos;
 };
 
-export const deleteTodo = (todos, id) => {
-  return todos.filter((todo) => todo.id !== id);
+export const deleteTodo = (tasks, id) => {
+  return tasks.filter((todo) => todo.id !== id);
 };
 
-export const editTodo = (todos, id, newTodoText) => {
-  const idx = todos.findIndex((todo) => todo.id === id);
-  const newTodos = [].concat(todos);
+export const editTodo = (tasks, id, newTodoText) => {
+  const idx = tasks.findIndex((todo) => todo.id === id);
+  const newTodos = [].concat(tasks);
   newTodos[idx] = Object.assign({}, newTodos[idx], {
     text: newTodoText,
     isEditing: false,
@@ -34,15 +34,15 @@ export const editTodo = (todos, id, newTodoText) => {
   return newTodos;
 };
 
-export const startEdit = (todos, id) => {
-  const newTodos = [].concat(todos);
-  const idx = todos.findIndex((todo) => todo.id === id);
+export const startEdit = (tasks, id) => {
+  const newTodos = [].concat(tasks);
+  const idx = tasks.findIndex((todo) => todo.id === id);
   newTodos[idx] = Object.assign({}, newTodos[idx], { isEditing: true });
   return newTodos;
 };
 
-export const filterTodos = (todos, currentFilter) => {
-  const copy = [].concat(todos);
+export const filterTodos = (tasks, currentFilter) => {
+  const copy = [].concat(tasks);
 
   if (buttonFiltersActions[currentFilter]) {
     return copy.filter(buttonFiltersActions[currentFilter]);

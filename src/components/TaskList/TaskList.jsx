@@ -3,14 +3,14 @@ import "./index.css";
 import { Task } from "containers/Task";
 
 export const TaskList = memo(
-  ({ todos, complitingChange, onDeleteTodo, setTodos }) => {
+  ({ tasks, complitingChange, onDeleteTodo, setTodos }) => {
     return (
       <section className="main">
         <ul className="todo-list">
-          {todos.map((todo) => (
+          {tasks.map((todo) => (
             <Task
               {...todo}
-              todos={todos}
+              tasks={tasks}
               setTodos={setTodos}
               key={todo.id}
               complitingChange={complitingChange}

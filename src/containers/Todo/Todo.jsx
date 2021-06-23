@@ -2,7 +2,7 @@ import React, { useState, useCallback, useMemo, memo } from "react";
 import { NewTaskForm } from "components/NewTaskForm";
 import { TaskList } from "components/TaskList";
 import { Footer } from "components/Footer";
-import { mockTodos } from "__mocks__/todos";
+import { mockTodos } from "__mocks__/tasks";
 import {
   completedTask,
   clearCompleted,
@@ -13,36 +13,36 @@ import {
 import { v4 } from "uuid";
 
 export const Todo = memo(() => {
-  const [todos, setTodos] = useState(mockTodos);
+  const [tasks, setTodos] = useState(mockTodos);
   const [currentFilter, setCurrentFilter] = useState("All");
 
   const activeTasksCount = useMemo(() => {
-    return filterTodos(todos, "Active").length;
-  }, [todos]);
+    return filterTodos(tasks, "Active").length;
+  }, [tasks]);
 
   const complitingChange = useCallback(
     (id) => {
-      setTodos(completedTask(id, todos));
+      setTodos(completedTask(id, tasks));
     },
-    [todos]
+    [tasks]
   );
 
   const onDeleteTodo = useCallback(
     (id) => {
-      setTodos(deleteTodo(todos, id));
+      setTodos(deleteTodo(tasks, id));
     },
-    [todos]
+    [tasks]
   );
 
   const onClearCompleted = useCallback(() => {
-    setTodos(clearCompleted(todos));
-  }, [todos]);
+    setTodos(clearCompleted(tasks));
+  }, [tasks]);
 
   const onAddTodo = useCallback(
     (textTodo) => {
-      setTodos(addTodo(todos, textTodo, v4()));
+      setTodos(addTodo(tasks, textTodo, v4()));
     },
-    [todos]
+    [tasks]
   );
 
   const onFilterChange = useCallback((name) => {
@@ -50,8 +50,8 @@ export const Todo = memo(() => {
   }, []);
 
   const filteredTodos = useMemo(
-    () => filterTodos(todos, currentFilter),
-    [todos, currentFilter]
+    () => filterTodos(tasks, currentFilter),
+    [tasks, currentFilter]
   );
 
   return (
@@ -59,7 +59,7 @@ export const Todo = memo(() => {
       <NewTaskForm onAddTodo={onAddTodo} />
       <TaskList
         setTodos={setTodos}
-        todos={filteredTodos}
+        tasks={filteredTodos}
         complitingChange={complitingChange}
         onDeleteTodo={onDeleteTodo}
       />
