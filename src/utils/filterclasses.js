@@ -1,1 +1,1 @@
-export const isFilter = (currentFilter, name) => currentFilter === name;
+export const checkEquals = (currentFilter, value) => currentFilter === value;

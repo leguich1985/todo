@@ -1,7 +1,7 @@
 import React, { memo } from "react";
 import { Button } from "ui/Button";
 import classNames from "classnames";
-import { isFilter } from "utils/filterclasses";
+import { checkEquals } from "utils/filterclasses";
 import { FILTER_NAMES } from "constants/tasksFilter";
 
 export const TasksFilter = memo(({ currentFilter, filterChangeHandler }) => (
@@ -10,7 +10,7 @@ export const TasksFilter = memo(({ currentFilter, filterChangeHandler }) => (
       <li key={name}>
         <Button
           className={classNames({
-            selected: isFilter(currentFilter, name),
+            selected: checkEquals(currentFilter, name),
           })}
           onClick={() => filterChangeHandler(name)}
         >

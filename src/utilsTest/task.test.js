@@ -1,4 +1,10 @@
-import { completedTask, filterTasks, deleteTask } from "utils/task";
+import {
+  completedTask,
+  filterTasks,
+  deleteTask,
+  clearCompleted,
+  addTask,
+} from "utils/task";
 
 describe("Тестирование завершения работы над задачей", () => {
   let mocks = [];
@@ -200,6 +206,108 @@ describe("Тестирование удаления Туду по айди", () 
       {
         id: 3,
         completed: false,
+      },
+    ]);
+  });
+});
+
+describe("Тестирование функции фильтрации массива тасков по полю Completed: true", () => {
+  let mocks = [];
+
+  beforeAll(() => {
+    mocks = [
+      {
+        id: 1,
+        completed: true,
+      },
+      {
+        id: 2,
+        completed: false,
+      },
+      {
+        id: 3,
+        completed: false,
+      },
+    ];
+  });
+
+  it("Удаляем из массива объект, у которого поле completed равно true", () => {
+    const expectFn = clearCompleted(mocks);
+    expect(expectFn).toEqual([
+      {
+        id: 2,
+        completed: false,
+      },
+      {
+        id: 3,
+        completed: false,
+      },
+    ]);
+  });
+});
+
+describe("Создаем новый таск и добавляем в массив тасков", () => {
+  let mocks = [];
+  jest
+    .spyOn(global, "Date")
+    .mockImplementation(() => new Date("2020-11-26T00:00:00.000Z"));
+  Date.now = () => 1606348800;
+  beforeAll(() => {
+    mocks = [
+      {
+        id: 1,
+        text: "Completed task",
+        completed: true,
+        isEditing: false,
+        createdAt: new Date(Date.now()),
+      },
+      {
+        id: 2,
+        text: "Editing task",
+        completed: false,
+        isEditing: false,
+        createdAt: new Date(Date.now()),
+      },
+      {
+        id: 3,
+        text: "Active task",
+        completed: false,
+        isEditing: false,
+        createdAt: new Date(Date.now()),
+      },
+    ];
+  });
+
+  it("Добавляем новый таск", () => {
+    const expectFn = addTask(mocks, "Hello world", 10);
+    expect(expectFn).toEqual([
+      {
+        id: 10,
+        text: "Hello world",
+        completed: false,
+        isEditing: false,
+        createdAt: new Date(Date.now()),
+      },
+      {
+        id: 1,
+        text: "Completed task",
+        completed: true,
+        isEditing: false,
+        createdAt: new Date(Date.now()),
+      },
+      {
+        id: 2,
+        text: "Editing task",
+        completed: false,
+        isEditing: false,
+        createdAt: new Date(Date.now()),
+      },
+      {
+        id: 3,
+        text: "Active task",
+        completed: false,
+        isEditing: false,
+        createdAt: new Date(Date.now()),
       },
     ]);
   });
