@@ -1,4 +1,4 @@
-export const mockTodos = [
+export const mockTasks = [
   {
     id: 1,
     text: "Completed task",

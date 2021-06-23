@@ -1,4 +1,4 @@
-import { completedTask, filterTodos, deleteTodo } from "utils/task";
+import { completedTask, filterTodos, deleteTask } from "utils/task";
 
 describe("Тестирование завершения работы над задачей", () => {
   let mocks = [];
@@ -159,7 +159,7 @@ describe("Тестирование удаления Туду по айди", () 
   });
 
   it("Удаляем по айди 1", () => {
-    const expectFn = deleteTodo(mocks, 1);
+    const expectFn = deleteTask(mocks, 1);
     expect(expectFn).toEqual([
       {
         id: 2,
@@ -173,7 +173,7 @@ describe("Тестирование удаления Туду по айди", () 
   });
 
   it("Удаляем по айди 3", () => {
-    const expectFn = deleteTodo(mocks, 3);
+    const expectFn = deleteTask(mocks, 3);
     expect(expectFn).toEqual([
       {
         id: 1,
@@ -187,7 +187,7 @@ describe("Тестирование удаления Туду по айди", () 
   });
 
   it("Удаляем по айди 100500", () => {
-    const expectFn = deleteTodo(mocks, 100500);
+    const expectFn = deleteTask(mocks, 100500);
     expect(expectFn).toEqual([
       {
         id: 1,

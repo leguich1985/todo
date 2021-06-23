@@ -20,7 +20,7 @@ export const addTodo = (tasks, todoText, todoId) => {
   return newTodos;
 };
 
-export const deleteTodo = (tasks, id) => {
+export const deleteTask = (tasks, id) => {
   return tasks.filter((todo) => todo.id !== id);
 };
 

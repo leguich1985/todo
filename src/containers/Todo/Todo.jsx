@@ -2,18 +2,18 @@ import React, { useState, useCallback, useMemo, memo } from "react";
 import { NewTaskForm } from "components/NewTaskForm";
 import { TaskList } from "components/TaskList";
 import { Footer } from "components/Footer";
-import { mockTodos } from "__mocks__/tasks";
+import { mockTasks } from "__mocks__/tasks";
 import {
   completedTask,
   clearCompleted,
   addTodo,
-  deleteTodo,
+  deleteTask,
   filterTodos,
 } from "utils/task";
 import { v4 } from "uuid";
 
 export const Todo = memo(() => {
-  const [tasks, setTasks] = useState(mockTodos);
+  const [tasks, setTasks] = useState(mockTasks);
   const [currentFilter, setCurrentFilter] = useState("All");
 
   const activeTasksCount = useMemo(() => {
@@ -29,7 +29,7 @@ export const Todo = memo(() => {
 
   const onDeleteTodo = useCallback(
     (id) => {
-      setTasks(deleteTodo(tasks, id));
+      setTasks(deleteTask(tasks, id));
     },
     [tasks]
   );
